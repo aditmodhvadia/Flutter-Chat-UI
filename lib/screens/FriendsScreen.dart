@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterchatui/models/models.dart';
+import 'package:flutterchatui/screens/FriendDetailScreen.dart';
 import 'package:flutterchatui/widgets/widgets.dart';
 
 class FriendsScreen extends StatelessWidget {
@@ -68,6 +69,11 @@ class _FriendsList extends StatelessWidget {
                                   ),
                                   onPressed: () {
                                     print("Next pressed");
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                FriendDetailScreen(
+                                                    friend: friend)));
                                   })
                               : Row(
                                   children: [

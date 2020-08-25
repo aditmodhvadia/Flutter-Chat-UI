@@ -5,7 +5,8 @@ class CircleUserPartyAvatar extends StatelessWidget {
   final User user;
   final double size;
 
-  const CircleUserPartyAvatar({Key key, this.user, this.size})
+  const CircleUserPartyAvatar(
+      {Key key, @required this.user, @required this.size})
       : super(key: key);
 
   @override

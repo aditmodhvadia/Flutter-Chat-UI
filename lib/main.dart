@@ -37,18 +37,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  final List<Widget> _screens = [
-    HomeScreen(),
-    FriendsScreen(),
-    HomeScreen()
+  final List<Widget> _screens = [HomeScreen(), FriendsScreen(), MoreScreen()];
+  final List<TabDestination> _tabs = [
+    TabDestination(icon: Icons.home, title: 'Home'),
+    TabDestination(icon: Icons.people_outline, title: 'Friends'),
+    TabDestination(icon: Icons.more_horiz, title: 'More'),
   ];
-  final List<IconData> _icons = [
-    Icons.home,
-    Icons.people_outline,
-    Icons.more_horiz
-  ];
-
-  final List<String> _titles = ['Home', 'Friends', 'More'];
 
   @override
   Widget build(BuildContext context) {
@@ -61,33 +55,43 @@ class _HomePageState extends State<HomePage> {
             children: _screens,
             index: _selectedIndex,
           ),
-          bottomNavigationBar: TabBar(
-            indicatorColor: Colors.transparent,
-            onTap: _onItemTapped,
-            tabs: _icons
-                .asMap()
-                .map((i, icon) => MapEntry(
-                    i,
-                    Tab(
-                      icon: Icon(
-                        icon,
-                        color: i == _selectedIndex
-                            ? Colors.blue[500]
-                            : Colors.white,
-                      ),
-                      child: Text(
-                        _titles[i],
-                        style: TextStyle(
-                            color: i == _selectedIndex
-                                ? Colors.blue[500]
-                                : Colors.white),
-                      ),
-                    )))
-                .values
-                .toList(),
+          bottomNavigationBar: Container(
+            color: Colors.transparent,
+            child: TabBar(
+              indicatorColor: Colors.transparent,
+              onTap: _onItemTapped,
+              tabs: _tabs
+                  .asMap()
+                  .map((i, tab) => MapEntry(
+                      i,
+                      Tab(
+                        icon: Icon(
+                          tab.icon,
+                          color: i == _selectedIndex
+                              ? Colors.blue[500]
+                              : Colors.white,
+                        ),
+                        child: Text(
+                          tab.title,
+                          style: TextStyle(
+                              color: i == _selectedIndex
+                                  ? Colors.blue[500]
+                                  : Colors.white),
+                        ),
+                      )))
+                  .values
+                  .toList(),
+            ),
           ),
         ),
       ),
     );
   }
+}
+
+class TabDestination {
+  final String title;
+  final IconData icon;
+
+  TabDestination({@required this.title, @required this.icon});
 }
